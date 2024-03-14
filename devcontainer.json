@@ -5,6 +5,9 @@
     { "localPort": 8000, "containerPort": 5000 } // Adjust port mappings as needed
   ],
   "postCreateCommand": [
+    "curl -sSL https://install.python-poetry.org | python3 -",
+    "git config --global user.email \"ray.garcia.jr@gmail.com\"",
+    "git config --global user.name \"Ray Garcia\"",
     "poetry install",  // Install dependencies using Poetry
     "poetry config virtualenvs.in-project true",  // Configure Poetry for in-project virtualenvs
     "poetry config virtualenvs.create false"     // Disable automatic virtualenv creation
