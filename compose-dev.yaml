@@ -1,17 +1,17 @@
-services:
-  app:
-    entrypoint:
-    - sleep
-    - infinity
-    image: mcr.microsoft.com/devcontainers/python:3.11-bullseye
-    init: true
-    postCreateCommands:
-      - poetry install
-      - poetry config virtualenvs.in-project true
-      - poetry config virtualenvs.create false
-      - git config --global user.email "ray.garcia.jr@gmail.com"
-      - git config --global user.name "Ray Garcia"
-    volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+{
+  "name": "Python 3.11 with Poetry Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  "forwardPorts": [
+    { "localPort": 8000, "containerPort": 5000 } // Adjust port mappings as needed
+  ],
+  "postCreateCommand": [
+    "poetry install",  // Install dependencies using Poetry
+    "poetry config virtualenvs.in-project true",  // Configure Poetry for in-project virtualenvs
+    "poetry config virtualenvs.create false"     // Disable automatic virtualenv creation
+  ],
+  "vscode": {
+    "settings": {
+      "python.defaultInterpreterPath": "/usr/local/bin/python3.11" // Update path if necessary
+    }
+  }
+}
