@@ -5,6 +5,12 @@ services:
     - infinity
     image: mcr.microsoft.com/devcontainers/python:3.11-bullseye
     init: true
+    postCreateCommands:
+      - poetry install
+      - poetry config virtualenvs.in-project true
+      - poetry config virtualenvs.create false
+      - git config --global user.email "ray.garcia.jr@gmail.com"
+      - git config --global user.name "Ray Garcia"
     volumes:
     - type: bind
       source: /var/run/docker.sock
